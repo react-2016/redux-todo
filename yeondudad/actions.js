@@ -1,16 +1,18 @@
+import uniqueId from 'lodash.uniqueid';
+
 // Todo를 삭제한다.
-export const removeTodo = (index) => {
+export const removeTodo = (id) => {
     return {
         type: 'REMOVE_TODO',
-        index
+        id
     };
 };
 
 // Todo의 상태(completed/uncompleted)를 변경한다.
-export const toggleTodo = (index) => {
+export const toggleTodo = (id) => {
     return {
         type: 'TOGGLE_TODO',
-        index
+        id
     };
 };
 
@@ -25,6 +27,7 @@ export const setVisible = (filter) => {
 // Todo를 생성한다.
 export const addTodo = (text) => {
     return {
+        id: uniqueId('todo'),
         type: 'ADD_TODO',
         text
     };

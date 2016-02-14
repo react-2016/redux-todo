@@ -1,3 +1,4 @@
+import Immutable from 'immutable';
 import { combineReducers } from 'redux';
 
 export const visible = (state = 'SHOW_ALL', action) => {
@@ -9,29 +10,22 @@ export const visible = (state = 'SHOW_ALL', action) => {
     }
 };
 
-export const todos = (state = [], action) => {
+export const todos = (state = Immutable.Map(), action) => {
     switch (action.type) {
         case 'ADD_TODO':
-            return [
-                ...state,
-                {
-                    text: action.text,
-                    completed: false
-                }
-            ];
+            return state.set(action.id, {
+                id: action.id,
+                text: action.text,
+                completed: false
+            });
         case 'TOGGLE_TODO':
-            return [
-                ...state.slice(0, action.index),
-                Object.assign({}, state[action.index], {
-                    completed: !state[action.index].completed
-                }),
-                ...state.slice(action.index + 1)
-            ];
+            return state.set(action.id, {
+                id: action.id,
+                text: state.get(action.id).text,
+                completed: !state.get(action.id).completed
+            });
         case 'REMOVE_TODO':
-            return [
-                ...state.slice(0, action.index),
-                ...state.slice(action.index + 1)
-            ];
+            return state.delete(action.id);
         default:
             return state;
     }

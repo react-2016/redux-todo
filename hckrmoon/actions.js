@@ -18,7 +18,7 @@ export const setVisible = (filter) => {
 
 export const createTodo = (text) => {
     return {
-        type: 'ADD_TODO',
+        type: 'CREATE_TODO',
         text
     };
 };

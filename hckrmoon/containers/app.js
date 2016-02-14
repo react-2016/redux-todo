@@ -11,18 +11,17 @@ import * as ActionCreators from '../actions';
 import Add from '../components/add';
 import Todos from '../components/todos';
 import Header from '../components/header';
-import Test from '../components/test';
 
 /**
  * Define React Presentational Component App
  */
 const App = (props) => {
-    const {onToggle, onSubmit, setVisible, visible, todos} = props;
+    const { toggleTodo, createTodo, setVisible, visible, todos } = props;
     return (
         <div>
-            <Header setVisible={setVisible} visible={visible} />
-            <Add onSubmit={onSubmit} />
-            <Todos visible={visible} todos={todos} onToggle={onToggle} />
+            <Header setVisible={setVisible} visible={visible}/>
+            <Add onSubmit={createTodo}/>
+            <Todos visible={visible} todos={todos} onToggle={toggleTodo}/>
         </div>
     );
 };

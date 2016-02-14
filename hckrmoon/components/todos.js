@@ -9,7 +9,9 @@ import React, { PropTypes } from 'react';
  */
 const Todos = ({visible, todos, onToggle }) => (
     <ul>
-        {todos.filter((todo) => {
+        {todos.map((todo, index) => (
+            Object.assign({}, todo, {index}))
+        ).filter((todo) => {
             switch(visible) {
                 case 'SHOW_ALL':
                     return true;
@@ -20,10 +22,10 @@ const Todos = ({visible, todos, onToggle }) => (
                 default:
                     return true;
             }
-        }).map((todo, index) => (
+        }).map((todo) => (
             <li
-                key={index}
-                onClick={() => onToggle(index)}
+                key={todo.index}
+                onClick={() => onToggle(todo.index)}
                 style={{textDecoration: todo.completed ? 'line-through' : 'none'}}>
                 {todo.text}
             </li>

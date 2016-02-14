@@ -25,7 +25,7 @@ const toggleTodo = (todos, index) => {
 
 export const todos = (state = [], action) => {
     switch (action.type) {
-        case 'ADD_TODO':
+        case 'CREATE_TODO':
             return [
                 ...state,
                 {
